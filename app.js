@@ -8,9 +8,8 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-const routes = require('./routes/index');
-const users = require('./routes/users');
-
+const index = require('./routes/index');
+const api = require('./routes/api');
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -24,8 +23,8 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
+app.use('/', index);
+app.use('/api', api);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
