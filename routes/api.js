@@ -13,8 +13,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/hideout', (req, res) => {
-  res.send(theaters.hideout(new Date()));
+  theaters.hideout(new Date(), (obj) => {
+    res.json(obj);
+  });
 });
+
 router.get('/tit', (req, res) => {
   res.send(theaters.tit(new Date()));
 });
